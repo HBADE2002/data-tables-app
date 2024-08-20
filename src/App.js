@@ -35,18 +35,36 @@ function App() {
           "https://jsonplaceholder.typicode.com/users"
         );
         const data = await response.json();
-        // console.log(data);
-        
-        const flattenedData = data.map((user) => ({
+      
+      // age data
+      const age_data = [
+        { id: 1, age: 28 },
+        { id: 2, age: 35 },
+        { id: 3, age: 22 },
+        { id: 4, age: 39 },
+        { id: 5, age: 31 },
+        { id: 6, age: 19 },
+        { id: 7, age: 26 },
+        { id: 8, age: 33 },
+        { id: 9, age: 37 },
+        { id: 10, age: 24 }
+      ];
+
+      // Merging the fetched data with the age data
+      const flattenedData = data.map((user) => {
+        // const userAgeData = age_data.find(age => age.id === user.id);
+        const userAgeData = age_data.find(age => age.id===user.id);
+        return {
           id: user.id,
           name: user.name,
           email: user.email,
           city: user.address.city,
+          age: userAgeData ? userAgeData.age : 'N/A' // Set age if found, otherwise 'N/A'
+        };
+      });
 
-        }));
-
-        setRecords(flattenedData);
-        setFilterRecords(flattenedData);
+      setRecords(flattenedData);
+      setFilterRecords(flattenedData);
         // console.log(flattenedData);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -78,6 +96,30 @@ function App() {
     // console.log('Index of Record Array Deleted', updatedRecords, id);
   };
 
+  // const conditionAge = [
+  //   {
+  //     when: row => row.age > 18,
+  //     style: {
+  //       backgroundColor: "green",
+  //       color: "white",
+  //       '&:hover':{
+  //         cursor: "pointer",
+  //       },
+  //     }, 
+  //   },
+  //   {
+  //     when : row => row.age > 30,
+  //     style: {
+  //       backgroundColor: "yellow",
+  //       color: "black",
+  //       '&:hover':{
+  //         cursor: "pointer",
+  //       },
+  //     }
+  //   }
+
+  // ]
+
   const columns = [
     {
       name: "ID",
@@ -99,6 +141,35 @@ function App() {
       selector: (row) => row.city,
       sortable: true,
     },
+    {
+      name: "Age",
+      selector: (row) => row.age,
+      sortable: true,
+      conditionalCellStyles : [
+        {
+          when: row => row.age > 18,
+          style: {
+            backgroundColor: "green",
+            color: "white",
+            '&:hover':{
+              cursor: "pointer",
+            },
+          }, 
+        },
+        {
+          when : row => row.age > 30,
+          style: {
+            backgroundColor: "yellow",
+            color: "black",
+            '&:hover':{
+              cursor: "pointer",
+            },
+          }
+        }
+      ]
+
+    }
+    ,
     {
       name: "Edit",
       cell: () => <button>Edit</button>
@@ -136,6 +207,7 @@ function App() {
       <DataTable
         columns={columns}
         data={records}
+        // conditionalRowStyles={conditionAge}
         customStyles={customStyles}
         pagination
         selectableRows
