@@ -15,6 +15,7 @@ function App() {
 
 
 const handleInfo = (row) => {
+  console.log("Row clicked:", row);
   setShowModal(true);
   setModalData(row);
 };
@@ -149,7 +150,7 @@ const handleInfo = (row) => {
     },
     {
       name: "Info",
-      cell: ({ row }) => <button onClick={() => handleInfo(row)}>Info</button>,
+      cell: ( row ) => <button onClick={() => handleInfo(row)}>Info</button>,
     },
     {
       name: "Edit",
