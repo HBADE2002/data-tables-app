@@ -13,12 +13,11 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState(null);
 
-
-const handleInfo = (row) => {
-  console.log("Row clicked:", row);
-  setShowModal(true);
-  setModalData(row);
-};
+  const handleInfo = (row) => {
+    console.log("Row clicked:", row);
+    setShowModal(true);
+    setModalData(row);
+  };
 
   const customStyles = {
     headRow: {
@@ -74,10 +73,9 @@ const handleInfo = (row) => {
             age: userAgeData ? userAgeData.age : "N/A", // Set age if found, otherwise 'N/A'
           };
         });
-        
+
         setRecords(flattenedData);
         setFilterRecords(flattenedData);
-        
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -150,7 +148,7 @@ const handleInfo = (row) => {
     },
     {
       name: "Info",
-      cell: ( row ) => <button onClick={() => handleInfo(row)}>Info</button>,
+      cell: (row) => <button onClick={() => handleInfo(row)}>Info</button>,
     },
     {
       name: "Edit",
@@ -164,13 +162,19 @@ const handleInfo = (row) => {
     },
   ];
 
-  //logic for search function in table
+  //logic for search function in table, users can be searched by userID, name, email, city 
   const handleFilter = (e) => {
-    const filteredData = filterRecords.filter((row) =>
-      row.name.toLowerCase().includes(e.target.value.toLowerCase())
-    )
-    .filter((row) => row.email.toLowerCase().includes(e.target.value.toLowerCase()));
-    
+    const filteredData = filterRecords.filter(
+      (row) => 
+        row.name.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          row.email.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          row.city.toLowerCase().includes(e.target.value.toLowerCase())||
+          row.id.toString().includes(e.target.value)
+      
+      // row.name.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    // .filter((row) => row.email.toLowerCase().includes(e.target.value.toLowerCase()))
+    // .filter((row) => row.city.toLowerCase().includes(e.target.value.toLowerCase()));
     setRecords(filteredData);
   };
 
@@ -198,7 +202,11 @@ const handleInfo = (row) => {
         pagination
         selectableRows
       />
-      <ModalPop show={showModal} onHide={() => setShowModal(false)} rowData={modalData} />
+      <ModalPop
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        rowData={modalData}
+      />
     </div>
   );
 }
