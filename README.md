@@ -1,9 +1,12 @@
 Snapshots of the application:
 ![image](https://github.com/user-attachments/assets/4ddb485f-96ee-4d17-b994-6b7dd21e3d26)
 
-![image](https://github.com/user-attachments/assets/1af5a33d-93a5-42f2-8c11-68f9378eb292)
 
-![image](https://github.com/user-attachments/assets/4ec198dd-e465-4f25-862e-82e5fde31eab)
+![image](https://github.com/user-attachments/assets/3e90ffe3-5048-4674-89e0-0769d5212bd5)
+
+
+![image](https://github.com/user-attachments/assets/91ece4bc-2e51-45b3-af47-1f0846eb535c)
+
 
 ![image](https://github.com/user-attachments/assets/f27415a3-889c-4568-8c44-910627e732c4)
 
