@@ -168,7 +168,9 @@ const handleInfo = (row) => {
   const handleFilter = (e) => {
     const filteredData = filterRecords.filter((row) =>
       row.name.toLowerCase().includes(e.target.value.toLowerCase())
-    );
+    )
+    .filter((row) => row.email.toLowerCase().includes(e.target.value.toLowerCase()));
+    
     setRecords(filteredData);
   };
 

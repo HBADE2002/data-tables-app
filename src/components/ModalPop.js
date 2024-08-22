@@ -5,8 +5,8 @@ import Modal from "react-bootstrap/Modal";
 function ModalPop({ show, onHide, rowData }) {
     return (
       <Modal show={show} onHide={onHide} centered backdrop="true" className="modal">
-        <Modal.Header closeButton>
-          <Modal.Title>Info for Row</Modal.Title>
+        <Modal.Header>
+          <Modal.Title> <h2>Info on Row</h2></Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {rowData ? (
